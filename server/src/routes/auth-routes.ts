@@ -13,7 +13,39 @@ export const login = async (req: Request, res: Response) => {
     return res.status(401).json({message: 'No valid user'});
   }
 
-  const checkPassword
+  const checkPassword = await bcrypt.compare(password, user.password);
+  if (!checkPassword) {
+    return res.status(401).json({
+      message: 'No valid password'
+    });
+  }
+
+  const secretKey = process.env.JWT_SECRET_KEY || '';
+
+  const token = jwt.sign({username}, secretKey, {expiresIn: '2h'});
+  return res.json({token});
+};
+
+export const signup = async (req: Request, res: Response) => {
+  const {username, email, password} = req.body;
+  try {
+    const user = await User.findOne({
+      where: {username},
+    });
+
+    if (user) {
+      return res.status(401).json({message: 'Login already exists'});
+    }
+
+    await User.create({username, email, password});
+
+const secretKey = process.env.JWT_SECRET_KEY || '';
+
+const token = jwt.sign({username, email}, secretKey, {expiresIn: '2h'});
+return res.json({token});
+  } catch (err: any) {
+    return res.status(400).json({message: err.message});
+  }
 };
 
 const router = Router();
