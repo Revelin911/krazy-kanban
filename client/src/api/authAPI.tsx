@@ -19,7 +19,7 @@ return data;
   }
 };
 
-const signup = async (userInfo: UserLogin) => {
+const newTicket = async (userInfo: UserLogin) => {
   try {
     const response = await fetch('/auth/signup', {
       method: 'POST',
@@ -38,4 +38,4 @@ return data;
   }
 };
 
-export { login };
+export { login, newTicket };
