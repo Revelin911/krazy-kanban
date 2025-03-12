@@ -1,19 +1,20 @@
 import { JwtPayload, jwtDecode } from 'jwt-decode';
+import { UserData } from '../interfaces/UserData';
 
 class AuthService {
   getProfile() {
-    // TODO: return the decoded token
+    //Returns the decoded token and jwtDecode returns value
     return jwtDecode<UserData>(this.getToken());
   }
 
   loggedIn() {
-    // TODO: return a value that indicates if the user is logged in
+    // Returns a value that indicates if the user is logged in
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
   }
   
   isTokenExpired(token: string) {
-    // TODO: return a value that indicates if the token is expired
+    //Returns a value that indicates if the token is expired
     try{
     const decoded = jwtDecode<JwtPayload>(token);
     if(decoded?.exp && decoded?.exp<Date.now() / 1000) {
@@ -25,21 +26,19 @@ class AuthService {
   }
 
   getToken(): string {
-    // TODO: return the token
+    // Returns the token to localStorage
     const loggedUser = localStorage.getItem('id_token') || '';
     return loggedUser;
   }
 
   login(idToken: string) {
-    // TODO: set the token to localStorage
-    // TODO: redirect to the home page
+    // Sets the token to localStorage and redirects to home page
     localStorage.setItem('id_token', idToken);
     window.location.assign('/');
   }
 
   logout() {
-    // TODO: remove the token from localStorage
-    // TODO: redirect to the login page
+    // Removes the token from localStorag and redirects to login page
     localStorage.removeItem('id_token');
     window.location.assign('/');
   }

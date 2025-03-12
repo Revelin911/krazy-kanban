@@ -1,7 +1,7 @@
 import { UserLogin } from "../interfaces/UserLogin";
 
 const login = async (userInfo: UserLogin) => {
-  // TODO: make a POST request to the login route
+  //Makes a POST request to the login route
   try {
     const response = await fetch('/auth/login', {
       method: 'POST',
@@ -16,9 +16,11 @@ const login = async (userInfo: UserLogin) => {
 return data;
   } catch (err) {
     console.error('Unable to login. Please try again');
+    return Promise.reject('No available user login information');
   }
 };
 
+//Makes a POST request to the create new tickets
 const newTicket = async (userInfo: UserLogin) => {
   try {
     const response = await fetch('/auth/createTicket', {
@@ -33,8 +35,8 @@ if (!response.ok) {
 }
 return data;
   } catch (err) {
-    console.error('Sign up invalid', err);
-    return Promise.reject('Unable to create user. Please try again.');
+    console.error('Unable to create new ticket', err);
+    return Promise.reject('Unable to create ne ticket. Please try again.');
   }
 };
 
