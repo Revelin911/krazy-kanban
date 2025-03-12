@@ -5,7 +5,7 @@ const login = async (userInfo: UserLogin) => {
   try {
     const response = await fetch('/auth/login', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json',},
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(userInfo),
     })
 
@@ -21,7 +21,7 @@ return data;
 
 const newTicket = async (userInfo: UserLogin) => {
   try {
-    const response = await fetch('/auth/signup', {
+    const response = await fetch('/auth/createTicket', {
       method: 'POST',
       headers: {'Content-Type': 'application/json',},
 body: JSON.stringify(userInfo),
