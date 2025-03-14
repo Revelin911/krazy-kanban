@@ -55,5 +55,5 @@ If everything runs correctly you should be able to view the following:
 
 ![Kanban Page](assets/images/kanban.png)
 
-![Render Deployment](https://drive.google.com/file/d/1wKvDrKflmj_nI3bDpNfPFSBVNbeha48K/view)
+![Render Deployment](https://krazy-kanban-x2og.onrender.comLinks to an external site.)
 
