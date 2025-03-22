@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 export const login = async (req: Request, res: Response) => {
-  // TODO: If the user exists and the password is correct, return a JWT token
+  // If the user exists and the password is correct, return a JWT token
   const {username, password} = req.body;
 
   const user = await User.findOne({ where: {username},
@@ -51,7 +51,7 @@ return res.json({token});
 
 const router = Router();
 
-// POST /login - Login a user
+// Login a user
 router.post('/login', login);
 
 export default router;
